@@ -24,24 +24,24 @@
 <body>
   <div class="App">
     <div class="container">
-      <input type="text" name="handle-data" onchange="" class='handle-data' />
-      <input type="text" name='content' onkeydown="handleAnswer()" class='show-answer' />
+      <input type="text" name="handle-data" onchange="" value="Yash Pandey" class='handle-data' readonly />
+      <input id="myInput" type="text" name='content' value="" class='show-answer' />
       <div class='Buttons-Container'>
-        <button onClick={handleValueClicks} class='number-keys'>1</button>
-        <button onClick={handleValueClicks} class='number-keys'>2</button>
-        <button onClick={handleValueClicks} class='number-keys'>3</button>
-        <button onClick={handleValueClicks} class='number-keys'>4</button>
-        <button onClick={handleValueClicks} class='number-keys'>5</button>
-        <button onClick={handleValueClicks} class='number-keys'>6</button>
-        <button onClick={handleValueClicks} class='number-keys'>7</button>
-        <button onClick={handleValueClicks} class='number-keys'>8</button>
-        <button onClick={handleValueClicks} class='number-keys'>9</button>
-        <button onClick={handleValueClicks} class='number-keys'>0</button>
-        <button class='action-buttons'>=</button>
-        <button class='action-buttons'>+</button>
-        <button class='action-buttons'>-</button>
-        <button class='action-buttons'>x</button>
-        <button class='action-buttons'>÷</button>
+        <button onClick="handleValueClicks()" class='btn number-keys'>1</button>
+        <button onClick="handleValueClicks()" class='btn number-keys'>2</button>
+        <button onClick="handleValueClicks()" class='btn number-keys'>3</button>
+        <button onClick="handleValueClicks()" class='btn number-keys'>4</button>
+        <button onClick="handleValueClicks()" class='btn number-keys'>5</button>
+        <button onClick="handleValueClicks()" class='btn number-keys'>6</button>
+        <button onClick="handleValueClicks()" class='btn number-keys'>7</button>
+        <button onClick="handleValueClicks()" class='btn number-keys'>8</button>
+        <button onClick="handleValueClicks()" class='btn number-keys'>9</button>
+        <button onClick="handleValueClicks()" class='btn number-keys'>0</button>
+        <button class='btn action-buttons'>=</button>
+        <button class='btn action-buttons'>+</button>
+        <button class='btn action-buttons'>-</button>
+        <button class='btn action-buttons'>x</button>
+        <button class='btn action-buttons'>÷</button>
       </div>
     </div>
   </div>
