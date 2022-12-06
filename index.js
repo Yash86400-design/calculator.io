@@ -49,11 +49,13 @@ function nowLetsHandleTheChicken(value) {
     // console.log("Jai Shree Ram");
     if (valueTwo.length == 0) {
       // console.log("Hi")
-      console.log(listOfValuesPressed);
-      valueTwo = listOfValuesPressed[listOfValuesPressed.length - 1]
+      // console.log(listOfValuesPressed);
+      valueTwo = listOfValuesPressed[listOfValuesPressed.length - 1] + " " + value
       document.querySelector("input:nth-child(1)").value = valueTwo
+      listOfValuesPressed.length = 0
+      document.querySelector("input:nth-child(2)").value = ""
     } else if (valueOne.length > 0) {
-
+      console.log(valueOne, valueTwo);
     }
     return;
   }
