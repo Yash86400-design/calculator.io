@@ -39,25 +39,58 @@ for (let index = 0; index < allButtons.length; index++) {
 }
 
 let listOfValuesPressed = []
+let valueOne = "";
+let valueTwo = "";
 
 function nowLetsHandleTheChicken(value) {
-  let valueOne = "";
-  let valueTwo = "";
+
   // Need 2 functions, first for showing the data on screen and second for back processing of those to show on top box as an answer.
   // console.log(value);
-  if (value == "-" || value == "+" || value == "=" || value == "x" || value == "/") {
-    // console.log("Jai Shree Ram");
-    if (valueTwo.length == 0) {
-      // console.log("Hi")
-      // console.log(listOfValuesPressed);
+  if (value == "-" || value == "+" || value == "x" || value == "/" || value == "=") {
+    if (valueTwo.length == 0 && value != "=") {
       valueTwo = listOfValuesPressed[listOfValuesPressed.length - 1] + " " + value
+      console.log(valueTwo);
       document.querySelector("input:nth-child(1)").value = valueTwo
       listOfValuesPressed.length = 0
       document.querySelector("input:nth-child(2)").value = ""
-    } else if (valueOne.length > 0) {
-      console.log(valueOne, valueTwo);
+    } else if (value == "=") {
+      let temp = document.querySelector("input:nth-child(2)").value
+      if (valueTwo.length > 0) {
+        let inputFirst = parseInt(valueTwo.slice(0, valueTwo.length - 2))
+        let inputSecond = parseInt(temp)
+        let key = valueTwo.slice(-1)
+
+        switch (key) {
+          case "+":
+            document.querySelector("input:nth-child(2)").value = inputFirst + inputSecond
+            break;
+          case "-":
+            document.querySelector("input:nth-child(2)").value = inputFirst - inputSecond
+            break;
+          case "x":
+            document.querySelector("input:nth-child(2)").value = inputFirst * inputSecond
+            break;
+          case "/":
+            document.querySelector("input:nth-child(2)").value = inputFirst / inputSecond
+            break;
+
+          default:
+            break;
+        }
+      } else if (valueTwo.length > 0 && valueOne.length == 0) {
+
+      } else { // where I just equal when there is nothing in both variable
+
+      }
     }
-    return;
+    else if (valueOne.length > 0) {
+      // console.log(valueOne, valueTwo);
+    }
+    // return;
+  } else if (value == "clear") {
+    document.querySelector("input:nth-child(1)").value = ""
+    document.querySelector("input:nth-child(2)").value = ""
+    listOfValuesPressed.length = 0
   }
   else {
     document.querySelector("input:nth-child(2)").value += value
@@ -66,5 +99,4 @@ function nowLetsHandleTheChicken(value) {
     listOfValuesPressed.push(document.querySelector("input:nth-child(2)").value)
   }
 
-  // console.log(valueOne);
 }

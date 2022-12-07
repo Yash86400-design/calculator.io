@@ -44,13 +44,13 @@ button {
 }
 
 button:hover.number-keys {
-  background: yellow;
-  color: black;
+  background: rgb(216, 235, 215);
+  color: rgb(44, 38, 38);
 }
 
 button:hover.action-buttons {
-  background: green;
-  color: darkorange;
+  background: rgb(234, 140, 183);
+  color: rgb(242, 239, 235);
 }
 
 input {
