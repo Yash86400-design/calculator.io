@@ -39,23 +39,22 @@ for (let index = 0; index < allButtons.length; index++) {
 }
 
 let listOfValuesPressed = []
-let valueOne = "";
+let valueOne = 0;
 let valueTwo = "";
 
 function nowLetsHandleTheChicken(value) {
 
   // Need 2 functions, first for showing the data on screen and second for back processing of those to show on top box as an answer.
-  // console.log(value);
-  if (value == "-" || value == "+" || value == "x" || value == "/" || value == "=") {
+  if ((value == "-" || value == "+" || value == "x" || value == "/" || value == "=") && valueOne == 0) {
     if (valueTwo.length == 0 && value != "=") {
       valueTwo = listOfValuesPressed[listOfValuesPressed.length - 1] + " " + value
-      console.log(valueTwo);
+      // console.log(valueTwo);
       document.querySelector("input:nth-child(1)").value = valueTwo
       listOfValuesPressed.length = 0
       document.querySelector("input:nth-child(2)").value = ""
     } else if (value == "=") {
       let temp = document.querySelector("input:nth-child(2)").value
-      if (valueTwo.length > 0) {
+      if (valueTwo.length > 0 && valueOne == 0) {
         let inputFirst = parseInt(valueTwo.slice(0, valueTwo.length - 2))
         let inputSecond = parseInt(temp)
         let key = valueTwo.slice(-1)
@@ -63,36 +62,80 @@ function nowLetsHandleTheChicken(value) {
         switch (key) {
           case "+":
             document.querySelector("input:nth-child(2)").value = inputFirst + inputSecond
+            valueOne = inputFirst + inputSecond
             break;
           case "-":
             document.querySelector("input:nth-child(2)").value = inputFirst - inputSecond
+            valueOne = inputFirst - inputSecond
             break;
           case "x":
             document.querySelector("input:nth-child(2)").value = inputFirst * inputSecond
+            valueOne = inputFirst * inputSecond
             break;
           case "/":
             document.querySelector("input:nth-child(2)").value = inputFirst / inputSecond
+            valueOne = inputFirst / inputSecond
             break;
 
           default:
             break;
         }
-      } else if (valueTwo.length > 0 && valueOne.length == 0) {
+      }
+      else if (valueOne.length > 0) {
+        // console.log(valueOne, valueTwo);
+      }
+      // return;
+    }
 
-      } else { // where I just equal when there is nothing in both variable
+  } else if ((value == "-" || value == "+" || value == "x" || value == "/" || value == "=") && valueOne > 0) {
 
+    if (value != "=") {
+      document.querySelector("input:nth-child(1)").value = valueOne + " " + value
+      valueTwo = (valueOne + " " + value).toString()
+      document.querySelector("input:nth-child(2)").value = ""
+      // console.log(valueOne, valueTwo);
+    } else if (value == "=") {
+      if (value != "=") {
+        valueOne = parseInt(document.querySelector("input:nth-child(2)").value)
+        let inputFirst = valueOne
+        let inputSecond = parseInt(valueTwo.slice(0, valueTwo.length - 2))
+        let key = valueTwo.slice(-1)
+
+        switch (key) {
+          case "+":
+            document.querySelector("input:nth-child(2)").value = inputFirst + inputSecond
+            valueOne = inputFirst + inputSecond
+            break;
+          case "-":
+            document.querySelector("input:nth-child(2)").value = inputFirst - inputSecond
+            valueOne = inputFirst - inputSecond
+            break;
+          case "x":
+            document.querySelector("input:nth-child(2)").value = inputFirst * inputSecond
+            valueOne = inputFirst * inputSecond
+            break;
+          case "/":
+            document.querySelector("input:nth-child(2)").value = inputFirst / inputSecond
+            valueOne = inputFirst / inputSecond
+            break;
+
+          default:
+            break;
+        }
+      } else if (value=="=") {
+        console.log(valueOne, valueTwo, value);
+        valueTwo =  ""
+        // I don't know how to get valueTwo and symbol to send for our calculator....
       }
     }
-    else if (valueOne.length > 0) {
-      // console.log(valueOne, valueTwo);
-    }
-    // return;
+
   } else if (value == "clear") {
     document.querySelector("input:nth-child(1)").value = ""
     document.querySelector("input:nth-child(2)").value = ""
     listOfValuesPressed.length = 0
-  }
-  else {
+    valueOne = 0
+    valueTwo = ""
+  } else {
     document.querySelector("input:nth-child(2)").value += value
     // valueOne += document.querySelector("input:nth-child(2)").value
     // use list and append and then join parseInt
