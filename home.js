@@ -43,25 +43,33 @@ function handleKeyPress(value) {
       temporaryData = document.querySelector("input:nth-child(2)").value;
 
       if (value == "=" && valueOne && !valueTwo) {
-        console.log("Call");
-        // console.log(valueOne, temporaryData, symbolPress);
+        console.log("Call 1");
         let resultOfFirstQuery = calculation(valueOne, parseInt(temporaryData), symbolPress)
         document.querySelector("input:nth-child(1)").value = valueOne + symbolPress + temporaryData
         document.querySelector("input:nth-child(2)").value = resultOfFirstQuery
         // symbolPress = "="
         valueTwo = temporaryData
-      } else if (value == "=" && valueOne && valueTwo) {
+      }
+
+      else if (value == "=" && valueOne && valueTwo) {
+        console.log("Call 2");
         let resultOfSecondQuery = calculation(parseInt(valueOne), parseInt(valueTwo), symbolPress)
-        console.log(resultOfSecondQuery);
         document.querySelector("input:nth-child(1)").value = valueOne + symbolPress + valueTwo
         document.querySelector("input:nth-child(2)").value = resultOfSecondQuery
         valueOne = resultOfSecondQuery
-      } else if ((value == "+" || value == "-" || value == "/" || value == "x") && valueOne) {
-        let newResultQuery = calculation(valueOne, parseInt(temporaryData), symbolPress)
-        document.querySelector("input:nth-child(1)").value = newResultQuery + value
-        document.querySelector("input:nth-child(2)").value = newResultQuery
-        symbolPress = value
       }
+
+      else if ((value == "+" || value == "-" || value == "/" || value == "x") && valueOne && temporaryData) {
+        console.log(valueOne, valueTwo);
+        console.log("Call 3");
+        let newResultQuery = calculation(valueOne, parseInt(temporaryData), symbolPress)
+        document.querySelector("input:nth-child(1)").value = newResultQuery + " " + value + " "
+        // document.querySelector("input:nth-child(2)").value = newResultQuery
+        symbolPress = value
+        valueOne = newResultQuery
+        document.querySelector("input:nth-child(2)").value = ""
+      }
+
 
     }
 
