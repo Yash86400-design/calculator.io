@@ -39,19 +39,24 @@ function handleKeyPress(value) {
 
     else {
       // here need another if/else: When user hit +/- symbol and one when use hit equal
-      console.log("Call");
       let temporaryData
       temporaryData = document.querySelector("input:nth-child(2)").value;
 
-      if (value == "=" && valueOne) {
+      if (value == "=" && valueOne && !valueTwo) {
+        console.log("Call");
         // console.log(valueOne, temporaryData, symbolPress);
         let resultOfFirstQuery = calculation(valueOne, parseInt(temporaryData), symbolPress)
         document.querySelector("input:nth-child(1)").value = valueOne + symbolPress + temporaryData
         document.querySelector("input:nth-child(2)").value = resultOfFirstQuery
-        symbolPress = "="
+        // symbolPress = "="
         valueTwo = temporaryData
+      } else if (value == "=" && valueOne && valueTwo) {
+        let resultOfSecondQuery = calculation(parseInt(valueOne), parseInt(valueTwo), symbolPress)
+        console.log(resultOfSecondQuery);
+        document.querySelector("input:nth-child(1)").value = valueOne + symbolPress + valueTwo
+        document.querySelector("input:nth-child(2)").value = resultOfSecondQuery
+        valueOne = resultOfSecondQuery
       } else if ((value == "+" || value == "-" || value == "/" || value == "x") && valueOne) {
-        console.log(valueOne, temporaryData, symbolPress);
         let newResultQuery = calculation(valueOne, parseInt(temporaryData), symbolPress)
         document.querySelector("input:nth-child(1)").value = newResultQuery + value
         document.querySelector("input:nth-child(2)").value = newResultQuery
