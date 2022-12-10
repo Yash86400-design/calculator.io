@@ -1,3 +1,4 @@
+// ! Alright it's all messed up I need to create a new file and do some new thing over there, I have messed up here. But it's alright, this is my first time of doing any such big task.
 // const inputBox1Target = $("input[name=content]")
 
 function handleAnswer() {
@@ -93,10 +94,13 @@ function nowLetsHandleTheChicken(value) {
       document.querySelector("input:nth-child(1)").value = valueOne + " " + value
       valueTwo = (valueOne + " " + value).toString()
       document.querySelector("input:nth-child(2)").value = ""
-      // console.log(valueOne, valueTwo);
+      console.log(valueOne, valueTwo);
     } else if (value == "=") {
+      console.log("Yaha kabhi pahoche tum");
+      // console.log(valueOne, valueTwo);
       if (value != "=") {
         valueOne = parseInt(document.querySelector("input:nth-child(2)").value)
+        console.log(valueOne);
         let inputFirst = valueOne
         let inputSecond = parseInt(valueTwo.slice(0, valueTwo.length - 2))
         let key = valueTwo.slice(-1)
@@ -122,10 +126,23 @@ function nowLetsHandleTheChicken(value) {
           default:
             break;
         }
-      } else if (value=="=") {
-        console.log(valueOne, valueTwo, value);
-        valueTwo =  ""
+      }
+      else if (value == "=") {
+        // console.log(listOfValuesPressed);
+        // console.log(valueOne, valueTwo, value);
+        // let data
+        // secondValue, operator, oldSecondValue = symbolSeparator(valueOne, valueTwo)
+        // data = symbolSeparator(valueOne, valueTwo)
+        symbolSeparator(valueOne, valueTwo)
+        // console.log(secondValue, operator, oldSecondValue);
+        // console.log(data.secondValue, data.operator, data.oldSecondValue);
+
+        // document.querySelector("input:nth-child(1)").value = valueOne + data.operator + data.oldSecondValue
+        // document.querySelector("input:nth-child(2)").value = valueOne + data.oldSecondValue
+        // valueTwo =  ""
         // I don't know how to get valueTwo and symbol to send for our calculator....
+      } else if (value == "-" || value == "+" || value == "x" || value == "/") {
+        console.log(listOfValuesPressed);
       }
     }
 
@@ -142,4 +159,22 @@ function nowLetsHandleTheChicken(value) {
     listOfValuesPressed.push(document.querySelector("input:nth-child(2)").value)
   }
 
+}
+
+function symbolSeparator(intValue, strValue) {
+  let secondValue = parseInt(strValue.slice(0, strValue.length - 2))
+  let operator = strValue.slice(-1)
+  let oldSecondValue = 0
+
+  switch (operator) {
+    case "+":
+      oldSecondValue = intValue - secondValue
+      document.querySelector("input:nth-child(1)").value = intValue + "+" + oldSecondValue
+      document.querySelector("input:nth-child(2)").value = intValue + oldSecondValue
+      // return { secondValue, operator: "+", oldSecondValue }
+      return;
+
+    default:
+      break;
+  }
 }
