@@ -9,12 +9,6 @@ body {
   min-height: 100vh;
   width: 100vw;
 }
-/* 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 2px;
-} */
 
 button {
   border: none;
@@ -26,21 +20,39 @@ button {
   transition: opacity 5s;
 }
 
-.App {
-  display: grid;
-  place-items: center;
-  height: 100vh;
-  width: 100vw;
-}
-
 .container {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  max-width: 300px;
 }
 
 .Buttons-Container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   margin-top: 5px;
+}
+
+button {
+  padding: 15px;
+  border-radius: 5px;
+  background: linear-gradient(to right, #e66465, #9198e5);
+  transition: 0.5s;
+}
+
+button.action-buttons {
+  background-image: linear-gradient(to right, #8360c3, #2ebf91);
+  color: white;
+}
+
+button.equal {
+  background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+}
+
+.equal {
+  grid-column: span 3;
 }
 
 button:hover.number-keys {
@@ -53,11 +65,18 @@ button:hover.action-buttons {
   color: rgb(242, 239, 235);
 }
 
+button:hover.equal {
+  background: white;
+  color: black;
+  transition: 0.5s ease-in-out;
+}
+
 input {
   border: none;
   outline: none;
   padding: 10px 5px;
   text-align: right;
+  width: 200px;
 }
 
 input:nth-child(1) {

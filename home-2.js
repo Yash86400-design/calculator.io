@@ -44,7 +44,9 @@ function handleKeyPress(value) {
 
       if (value == "=" && valueOne && !valueTwo) {
         answer = calculation(valueOne, parseInt(temporaryData), symbolPress)
+       
         document.querySelector("input:nth-child(1)").value = valueOne + " " + symbolPress + " " + temporaryData
+        
         if (document.querySelector("input:nth-child(2)").value) {
           document.querySelector("input:nth-child(2)").value = answer
         }
